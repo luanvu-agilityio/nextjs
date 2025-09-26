@@ -1,36 +1,26 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { getToken } from 'next-auth/jwt';
 
+// Force Node.js runtime to avoid Edge Runtime issues with NextAuth
 export const runtime = 'nodejs';
 
-// Define routes directly in middleware to avoid import issues
-const PUBLIC_ROUTES = [
-  '/',
-  '/login',
-  '/register',
-  '/about',
-  // add your public routes here
-];
+// Define routes directly to avoid import issues
+const PUBLIC_ROUTES = ['/', '/login', '/register', '/about'];
 
-const PROTECTED_ROUTES = [
-  '/dashboard',
-  '/profile',
-  '/settings',
-  // add your protected routes here
-];
+const PROTECTED_ROUTES = ['/dashboard', '/profile', '/settings'];
 
 export default async function middleware(req: NextRequest) {
   const { pathname, origin } = req.nextUrl;
 
-  console.log(`[middleware] Processing: ${pathname}`);
-
-  // Skip middleware for system routes - simplified condition
+  // Skip middleware for system routes and API routes
   if (
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/api/auth') || // Allow NextAuth API routes
+    pathname.startsWith('/api') ||
     pathname.startsWith('/static') ||
-    pathname.includes('.') // files with extensions
+    pathname.endsWith('.ico') ||
+    pathname.endsWith('.png') ||
+    pathname.endsWith('.jpg') ||
+    pathname.endsWith('.svg')
   ) {
     return NextResponse.next();
   }
@@ -44,7 +34,6 @@ export default async function middleware(req: NextRequest) {
   });
 
   if (isPublicRoute) {
-    console.log(`[middleware] Public route allowed: ${pathname}`);
     return NextResponse.next();
   }
 
@@ -54,30 +43,13 @@ export default async function middleware(req: NextRequest) {
   );
 
   if (isProtectedRoute) {
-    try {
-      // Check for NEXTAUTH_SECRET
-      if (!process.env.NEXTAUTH_SECRET) {
-        console.error('[middleware] NEXTAUTH_SECRET not found');
-        const url = new URL('/login', origin);
-        url.searchParams.set('from', pathname);
-        return NextResponse.redirect(url);
-      }
+    // Use cookie-based authentication instead of getToken
+    // This works better in Edge Runtime
+    const sessionCookie =
+      req.cookies.get('next-auth.session-token') ||
+      req.cookies.get('__Secure-next-auth.session-token');
 
-      const token = await getToken({
-        req,
-        secret: process.env.NEXTAUTH_SECRET,
-      });
-
-      if (!token) {
-        console.log(`[middleware] No token found, redirecting to login`);
-        const url = new URL('/login', origin);
-        url.searchParams.set('from', pathname);
-        return NextResponse.redirect(url);
-      }
-
-      console.log(`[middleware] Protected route authorized: ${pathname}`);
-    } catch (err) {
-      console.error('[middleware] Authentication error:', err);
+    if (!sessionCookie) {
       const url = new URL('/login', origin);
       url.searchParams.set('from', pathname);
       return NextResponse.redirect(url);
@@ -88,14 +60,6 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api/auth (NextAuth API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api/auth|_next/static|_next/image|favicon.ico).*)',
-  ],
+  // Only match specific routes to avoid conflicts
+  matcher: ['/dashboard/:path*', '/profile/:path*', '/settings/:path*'],
 };
