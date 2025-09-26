@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
+export const runtime = 'nodejs';
+
 // Define routes directly in middleware to avoid import issues
 const PUBLIC_ROUTES = [
   '/',
