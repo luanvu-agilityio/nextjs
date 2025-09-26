@@ -1,0 +1,146 @@
+@tailwind utilities;
+@import 'tailwindcss/preflight';
+@import 'tailwindcss';
+
+body {
+  @apply max-w-[1440px] m-auto font-primary text-lg;
+}
+
+:root {
+  --primary: #0d1222;
+  --secondary: #f4f4f4;
+  --purple-background: #ab40ff;
+  --purple-foreground: #7d89ff;
+  --blue-background: #5463ff;
+  --white: #ffffff;
+  --gray: #dddddd;
+  --gray-background: #646464;
+  --gray-foreground: #969696;
+  --success: #7dac5f;
+  --success-background: #f0f9ff;
+  --success-foreground: #166534;
+  --destructive-background: #ef8484;
+  --destructive-foreground: #fef2f2;
+  --warning: #f59e0b;
+  --warning-background: #fffbeb;
+  --warning-foreground: #92400e;
+  --info: #3b82f6;
+  --info-background: #eff6ff;
+  --info-foreground: #1e40af;
+  --muted-background: #393e46;
+  --gradient-primary: linear-gradient(180deg, #7d89ff 0%, #ab40ff 66.67%);
+  --gradient-secondary: linear-gradient(
+    90deg,
+    rgba(107, 120, 255, 0.99) 0%,
+    #8609e9 48.55%,
+    #8609e900 97.4%
+  );
+
+  --shadow-primary: 0px 20px 20px 0px #0000000d;
+  --shadow-secondary: 0px 20px 20px 0px #0000001a;
+  --shadow-tertiary: 0px 20px 20px 0px #00000026;
+  --shadow-quaternary: 0px 10px 20px 0px #0000001a;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 30px;
+  --font-size-3xl: 36px;
+  --font-size-4xl: 40px;
+  --font-size-5xl: 48px;
+}
+
+.dark {
+  --background: #181a20;
+  --foreground: #f3f6fa;
+  --card: #181a20;
+  --card-foreground: #f3f6fa;
+  --popover: #181a20;
+  --popover-foreground: #f3f6fa;
+  --primary: #f3f6fa;
+  --primary-foreground: #23253a;
+  --secondary: #23253a;
+  --secondary-foreground: #f3f6fa;
+  --muted: #23253a;
+  --muted-foreground: #8a99b3;
+  --accent: #23253a;
+  --accent-foreground: #f3f6fa;
+  --destructive: #a32a1f;
+  --destructive-foreground: #f3f6fa;
+  --border: #23253a;
+  --input: #23253a;
+  --ring: #c3c9e6;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-purple-background: var(--purple-background);
+  --color-purple-foreground: var(--purple-foreground);
+  --color-blue-background: var(--blue-background);
+  --color-white: var(--white);
+  --color-gray: var(--gray);
+  --color-gray-background: var(--gray-background);
+  --color-gray-foreground: var(--gray-foreground);
+  --color-success: var(--success);
+  --color-success-background: var(--success-background);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive-background: var(--destructive-background);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-warning: var(--warning);
+  --color-warning-background: var(--warning-background);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-background: var(--info-background);
+  --color-info-foreground: var(--info-foreground);
+  --color-muted-background: var(--muted-background);
+  --color-gradient-primary: var(--gradient-primary);
+  --color-gradient-secondary: var(--gradient-secondary);
+
+  --font-primary: var(--font-primary);
+  --font-secondary: var(--font-secondary);
+  --font-tertiary: var(--font-tertiary);
+
+  --text-xs: var(--font-size-xs);
+  --text-sm: var(--font-size-sm);
+  --text-md: var(--font-size-md);
+  --text-lg: var(--font-size-lg);
+  --text-xl: var(--font-size-xl);
+  --text-2xl: var(--font-size-2xl);
+  --text-3xl: var(--font-size-3xl);
+  --text-4xl: var(--font-size-4xl);
+  --text-5xl: var(--font-size-5xl);
+}
+
+@layer utilities {
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .shadow-primary {
+    box-shadow: var(--shadow-primary);
+  }
+  .shadow-secondary {
+    box-shadow: var(--shadow-secondary);
+  }
+  .shadow-tertiary {
+    box-shadow: var(--shadow-tertiary);
+  }
+  .shadow-quaternary {
+    box-shadow: var(--shadow-quaternary);
+  }
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+  }
+  body {
+    @apply text-lg font-primary;
+  }
+}
