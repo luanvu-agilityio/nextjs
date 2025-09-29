@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 // Icons
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import LogoIcon from '@/components/icons/BrandLogo';
 
 // Components
 import { Button, Heading, IconButton, Typography } from '@/components/common';
@@ -31,14 +32,8 @@ const Footer = ({ className }: FooterProps) => {
               className='flex items-center gap-2 mb-4'
               aria-label='Go to homepage'
             >
-              <div className='w-8 h-8 bg-gradient-primary rounded flex items-center justify-center'>
-                <span
-                  className='text-white font-bold text-lg'
-                  aria-hidden='true'
-                >
-                  M
-                </span>
-              </div>
+              <LogoIcon />
+
               <span className='font-tertiary font-bold text-sm text-white'>
                 {COMPANY_INFO.name}
               </span>
@@ -142,7 +137,7 @@ const Footer = ({ className }: FooterProps) => {
               </address>
 
               {/* Social Media Icons */}
-              <div className='flex space-x-3' aria-label='Social media links'>
+              <div className='flex gap-4' aria-label='Social media links'>
                 <IconButton
                   variant='outline'
                   size='sm'

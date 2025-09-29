@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { Trash } from 'lucide-react';
+
+// Icons
+import TrashIcon from '../icons/TrashIcon';
 
 // Components
 import { Button, IconButton, Typography } from '../common';
@@ -38,7 +40,7 @@ function WishlistItemRow({
           aria-label='remove'
           className='border-none '
         >
-          <Trash />
+          <TrashIcon />
         </IconButton>
         <div className='w-20 h-20 flex-shrink-0 overflow-hidden bg-gray-50'>
           <Image

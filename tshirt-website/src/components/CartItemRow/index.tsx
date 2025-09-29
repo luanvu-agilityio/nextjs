@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 // Icons
-import { Trash } from 'lucide-react';
+import TrashIcon from '../icons/TrashIcon';
 
 // Components
 import { Button, IconButton, Typography } from '../common';
@@ -82,7 +82,7 @@ function CartItemRow({
           aria-label='remove'
           className='border-none'
         >
-          <Trash />
+          <TrashIcon />
         </IconButton>
       </div>
 

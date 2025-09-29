@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -23,6 +22,10 @@ import {
   TOAST_TITLES,
   TOAST_VARIANTS,
 } from '@/constants';
+
+// Icons
+import GoogleIcon from '../icons/GoogleIcon';
+import FacebookIcon from '../icons/FacebookIcon';
 
 // Utils
 import { LoginFormValues, loginSchema } from '@/utils';
@@ -89,27 +92,15 @@ const LoginForm = () => {
           variant='tertiary'
           className=' flex items-center justify-center gap-2'
         >
-          <Image
-            src='/icons/google.svg'
-            alt='Google'
-            className='w-6 h-6'
-            width={24}
-            height={24}
-          />
+          <GoogleIcon className='w-6 h-6' />
           Google
         </Button>
         <Button
           type='button'
           variant='tertiary'
-          className=' flex items-center justify-center gap-2'
+          className=' flex items-center justify-center gap-2 w-auto'
         >
-          <Image
-            src='/icons/facebook.svg'
-            alt='Facebook'
-            className='w-6 h-6'
-            width={24}
-            height={24}
-          />
+          <FacebookIcon className='w-6 h-6' />
           Facebook
         </Button>
       </div>

@@ -94,7 +94,7 @@ export default function About() {
                   className='object-cover'
                 />
                 {/* Store Label */}
-                <div className='absolute w-full bottom-4 left-4 bg-white text-gradient-primary px-6 py-3 font-semibold shadow-lg'>
+                <div className='absolute w-full bottom-4 left-4 bg-white text-purple-background px-6 py-3 font-semibold shadow-lg'>
                   Mangcoding Store
                 </div>
               </div>
@@ -117,7 +117,7 @@ export default function About() {
                   className='object-cover'
                 />
                 {/* Store Label */}
-                <div className='absolute w-full bottom-4 right-4 bg-white text-gradient-primary px-6 py-3  font-semibold shadow-lg'>
+                <div className='absolute w-full bottom-4 right-4 bg-white text-purple-background px-6 py-3  font-semibold shadow-lg'>
                   Mangcoding Store
                 </div>
               </div>

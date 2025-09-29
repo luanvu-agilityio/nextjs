@@ -34,7 +34,7 @@ const Navigation = ({
     <nav
       className={cn(
         'flex',
-        isMobile ? 'flex-col space-y-4' : 'items-center gap-8',
+        isMobile ? 'flex-col space-y-4' : 'items-center gap-10',
         className
       )}
     >
@@ -48,13 +48,28 @@ const Navigation = ({
           <Link
             href={item.href}
             className={cn(
-              'font-secondary text-lg text-primary transition-all duration-200',
-              'hover:text-blue-background hover:font-bold',
+              'font-secondary text-lg text-primary transition-all duration-200 relative',
               isMobile && 'text-base'
             )}
             onClick={onItemClick}
           >
-            {item.label}
+            <span
+              className={cn(
+                'block font-normal absolute inset-0 transition-opacity duration-200',
+                hoveredItem === item.href ? 'opacity-0' : 'opacity-100'
+              )}
+              aria-hidden='true'
+            >
+              {item.label}
+            </span>
+            <span
+              className={cn(
+                'block font-bold text-blue-background transition-opacity duration-200',
+                hoveredItem === item.href ? 'opacity-100' : 'opacity-0'
+              )}
+            >
+              {item.label}
+            </span>
           </Link>
 
           {/* Only render hover indicator on client */}

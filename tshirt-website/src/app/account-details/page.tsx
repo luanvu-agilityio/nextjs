@@ -18,6 +18,7 @@ import { useMe, useUpdateUser } from '@/hooks/useRegisterUser';
 
 // Constants
 import { ROUTES } from '@/constants/route';
+import { TOAST_MESSAGES, TOAST_TITLES, TOAST_VARIANTS } from '@/constants';
 
 // Api
 import { uploadToCloudinary } from '@/api';
@@ -25,7 +26,6 @@ import ProfileCard from '@/components/ProfileCard';
 import ProfileCardSkeleton from '@/components/ProfileCard/ProfileCardSkeleton';
 import AccountScreenSkeleton from '@/components/AccountDetails/AccountScreenSkeleton';
 import { useSession } from 'next-auth/react';
-import { TOAST_MESSAGES, TOAST_TITLES, TOAST_VARIANTS } from '@/constants';
 
 export default function AccountDetails() {
   const fileInputRef = useRef<HTMLInputElement>(null!);

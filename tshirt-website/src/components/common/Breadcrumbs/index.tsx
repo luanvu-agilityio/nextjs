@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 // Icons
-import { ChevronRight } from 'lucide-react';
+import SlashIcon from '@/components/icons/SlashIcon';
 
 // Hooks
 import useBreadcrumbs, { BreadcrumbItem } from '@/hooks/useBreadcrumb';
@@ -81,9 +81,9 @@ function Breadcrumbs({
           >
             {renderBreadcrumbItem()}
             {!isLast && (
-              <ChevronRight
+              <SlashIcon
                 className={cn(
-                  'size-4',
+                  'w-6 h-2',
                   variant === 'dark' ? 'text-white/60' : 'text-gray-400'
                 )}
               />

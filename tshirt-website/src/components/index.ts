@@ -1,5 +1,6 @@
 export * from './common';
 export * from './layout';
+export * from './icons';
 export * from './NavigationBar';
 export * from './StarRating';
 export * from './ProductCard';

@@ -42,8 +42,9 @@ const Badge = ({
   children,
   ...props
 }: BadgeProps) => {
-  const displayValue = count !== undefined ? count : children;
+  const displayValue = count ?? children;
 
+  if (typeof count === 'number' && count < 1) return null;
   if (!displayValue && displayValue !== 0) return null;
 
   return (

@@ -1,11 +1,7 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-
 import { useRouter } from 'next/navigation';
-
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -19,7 +15,8 @@ import {
 } from '../common';
 
 // Icons
-import { Facebook } from 'lucide-react';
+import GoogleIcon from '../icons/GoogleIcon';
+import FacebookIcon from '../icons/FacebookIcon';
 
 // Constants
 import {
@@ -92,21 +89,15 @@ function SignUpForm() {
           variant='tertiary'
           className=' flex items-center justify-center gap-2'
         >
-          <Image
-            src='/icons/google.svg'
-            alt='Google'
-            className='w-6 h-6'
-            width={24}
-            height={24}
-          />
+          <GoogleIcon className='w-6 h-6' />
           Google
         </Button>
         <Button
           type='button'
           variant='tertiary'
-          className=' flex items-center justify-center gap-2'
+          className=' flex items-center justify-center gap-2 w-auto'
         >
-          <Facebook />
+          <FacebookIcon className='w-6 h-6' />
           Facebook
         </Button>
       </div>

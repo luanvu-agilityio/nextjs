@@ -9,13 +9,16 @@ import {
   Menu,
   X,
   ShoppingBag,
-  Heart,
   User,
   LogIn,
   UserPlus,
   LogOut,
   History,
 } from 'lucide-react';
+import LogoIcon from '@/components/icons/BrandLogo';
+import ShoppingBagIcon from '@/components/icons/ShoppingBag';
+import WishlistIcon from '@/components/icons/WishlistIcon';
+import UserIcon from '@/components/icons/UserIcon';
 
 // Components
 import { Input, IconButton, Badge, Navigation, showToast } from '@/components';
@@ -25,7 +28,7 @@ import { cn } from '@/lib/utils';
 
 // Constants
 import NAV_ITEMS from '@/constants/nav-item';
-import { ROUTES } from '@/constants';
+import { ROUTES, TOAST_MESSAGES } from '@/constants';
 
 // Stores
 import { useCart, useWishlist } from '@/store';
@@ -70,11 +73,7 @@ const Header = ({ className }: HeaderProps) => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleLogout = () => {
-    showToast({
-      title: 'Logged out successfully',
-      description: 'You have been signed out. See you next time!',
-      variant: 'success',
-    });
+    showToast(TOAST_MESSAGES.LOGOUT_SUCCESS);
 
     setModalOpen(false);
     signOut({ callbackUrl: ROUTES.HOME });
@@ -102,78 +101,83 @@ const Header = ({ className }: HeaderProps) => {
         <div className='flex items-center justify-between h-20'>
           {/* Logo */}
           <Link href={ROUTES.HOME} className='flex items-center gap-3'>
-            <div className='w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center'>
-              <span className='text-white font-bold text-lg'>M</span>
-            </div>
+            <LogoIcon />
+
             <span className='font-tertiary font-bold text-lg text-primary'>
               mangcoding Store
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className='hidden lg:block'>
-            <Navigation items={NAV_ITEMS} />
-          </div>
+          <div className='flex justify-between items-center gap-10'>
+            <div className='hidden lg:block'>
+              <Navigation items={NAV_ITEMS} />
+            </div>
 
-          {/* Desktop Actions */}
-          <div className='hidden lg:flex items-center space-x-6'>
-            {/* Action Icons */}
-            <div className='flex items-center space-x-4'>
-              <div className='relative'>
-                <IconButton
-                  variant='ghost'
-                  size='md'
-                  aria-label='Shopping cart'
-                  className='text-primary hover:text-blue-background'
-                  onClick={handleOpenCart}
-                >
-                  <ShoppingBag className='size-5' />
-                </IconButton>
-                <div className='absolute -top-2 right-0'>
-                  <Badge count={cartCount} variant='destructive' size='small' />
-                </div>
-              </div>
-              <div className='relative'>
-                <IconButton
-                  variant='ghost'
-                  size='md'
-                  aria-label='Wishlist'
-                  className='text-primary hover:text-blue-background'
-                  onClick={handleOpenWishlist}
-                >
-                  <Heart className='size-5' />
-                  <div className='absolute -top-1 right-0'>
+            {/* Desktop Actions */}
+            <div className=' hidden lg:flex items-center justify-between gap-6 '>
+              {/* Action Icons */}
+              <div className='flex items-center space-x-6'>
+                <div className='relative'>
+                  <IconButton
+                    variant='ghost'
+                    size='md'
+                    aria-label='Shopping cart'
+                    className='text-primary hover:text-blue-background'
+                    onClick={handleOpenCart}
+                  >
+                    <ShoppingBagIcon />
+                  </IconButton>
+                  <div className='absolute -top-2 right-0'>
                     <Badge
-                      count={wishlistCount}
+                      count={cartCount}
                       variant='destructive'
                       size='small'
                     />
                   </div>
+                </div>
+                <div className='relative'>
+                  <IconButton
+                    variant='ghost'
+                    size='md'
+                    aria-label='Wishlist'
+                    className='text-primary hover:text-blue-background'
+                    onClick={handleOpenWishlist}
+                  >
+                    <WishlistIcon />
+                    <div className='absolute -top-1 right-0'>
+                      <Badge
+                        count={wishlistCount}
+                        variant='destructive'
+                        size='small'
+                      />
+                    </div>
+                  </IconButton>
+                </div>
+
+                <IconButton
+                  variant='ghost'
+                  size='md'
+                  aria-label='User account'
+                  className='text-primary hover:text-blue-background'
+                  onClick={() => {
+                    setModalOpen(s => !s);
+                  }}
+                >
+                  <UserIcon />
                 </IconButton>
               </div>
-
-              <IconButton
-                variant='ghost'
-                size='md'
-                aria-label='User account'
-                className='text-primary hover:text-blue-background'
-                onClick={() => {
-                  setModalOpen(s => !s);
-                }}
-              >
-                <User className='size-5' />
-              </IconButton>
-            </div>
-            {/* Search Input */}
-            <div className='w-80'>
-              <Input
-                variant='default'
-                size='small'
-                showIcon
-                iconType='search'
-                placeholder='Search'
-                className='border-gray-300 focus:border-blue-background'
-              />
+              {/* Search Input */}
+              <div className='w-80'>
+                <Input
+                  variant='default'
+                  size='small'
+                  showIcon
+                  iconType='search'
+                  placeholder='Search'
+                  className='border-gray-300 focus:border-blue-background'
+                />
+              </div>
             </div>
           </div>
 
@@ -225,7 +229,7 @@ const Header = ({ className }: HeaderProps) => {
                     className='text-primary'
                     onClick={handleOpenWishlist}
                   >
-                    <Heart className='size-5' />
+                    <WishlistIcon />
                     <div className='absolute -top-2 -right-2'>
                       <Badge
                         count={wishlistCount}
@@ -243,7 +247,7 @@ const Header = ({ className }: HeaderProps) => {
                     aria-label='Shopping cart'
                     className='text-primary'
                   >
-                    <ShoppingBag className='size-5' />
+                    <ShoppingBag />
                   </IconButton>
                   <div className='absolute -top-2 -right-2'>
                     <Badge
@@ -263,7 +267,7 @@ const Header = ({ className }: HeaderProps) => {
                     setModalOpen(true);
                   }}
                 >
-                  <User className='size-5' />
+                  <UserIcon />
                 </IconButton>
               </div>
             </div>

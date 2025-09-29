@@ -7,13 +7,10 @@ import ColorPicker from '@/components/ColorPicker';
 import SizePicker from '@/components/SizePicker';
 
 // Icons
-import {
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  ShoppingBag,
-  ShoppingCart,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ShoppingCartIcon from '../icons/ShoppingCartIcon';
+import WishlistIcon from '../icons/WishlistIcon';
+import ShoppingBagIcon from '../icons/ShoppingBag';
 
 // Types
 import { Product } from '@/types';
@@ -133,7 +130,7 @@ const ProductDetails = ({
               ({product.stock ?? 1234})
             </div>
             <div className='text-gray-500'>
-              <ShoppingCart className='size-5' />
+              <ShoppingCartIcon />
             </div>
           </div>
         </div>
@@ -181,9 +178,9 @@ const ProductDetails = ({
           className={`${isInWishlist(product.id) ? 'text-red-500' : 'text-primary'} hover:text-blue-background  text-white`}
           onClick={onAddToWishlist}
         >
-          <Heart
-            size={32}
-            fill={isInWishlist(product.id) ? 'currentColor' : 'none'}
+          <WishlistIcon
+            className='w-8 h-8 border-none'
+            fill={isInWishlist(product.id) ? 'currentColor' : 'white'}
           />
         </IconButton>
         <IconButton
@@ -192,7 +189,7 @@ const ProductDetails = ({
           size='xl'
           onClick={onAddToCart}
         >
-          <ShoppingBag size={32} />
+          <ShoppingBagIcon className='w-8 h-8 border-none' fill='white' />
         </IconButton>
       </div>
     </div>

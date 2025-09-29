@@ -16,6 +16,7 @@ import OrderSummary from '@/components/OrderSummary';
 
 // Constants
 import { ROUTES } from '@/constants/route';
+import { TOAST_MESSAGES } from '@/constants';
 
 // Hooks
 import { useCart } from '@/store/cart';
@@ -24,7 +25,6 @@ import { useCreateOrder } from '@/hooks';
 
 // Types
 import { CheckoutFormData } from '@/types/order';
-import { TOAST_MESSAGES } from '@/constants';
 
 function CheckoutPage() {
   const router = useRouter();
