@@ -23,7 +23,7 @@ import { Order } from '@/types';
 import OrderCardSkeleton from '@/components/OrderCard/OrderCardSkeleton';
 
 function OrderHistory() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const userId = session?.user?.id;
 
   const { data: orders, isLoading, error } = useUserOrders(userId);
@@ -32,7 +32,7 @@ function OrderHistory() {
     return <ErrorMessage customMessage='Failed to load orders.' />;
   }
 
-  if (!orders || orders.length === 0) {
+  if (!isLoading && orders && orders.length === 0) {
     return (
       <div className='text-center py-8'>
         <Typography className='text-gray-500 mb-4'>
@@ -75,15 +75,14 @@ function OrderHistory() {
         <Heading level={3} className='text-3xl mb-6 font-bold'>
           Order History
         </Heading>
-        {isLoading ? (
-          // Replace with your skeleton component or placeholder
+        {isLoading || status === 'loading' ? (
           <div className='animate-pulse space-y-4'>
             {[...Array(3)].map((_, idx) => (
               <OrderCardSkeleton key={idx} />
             ))}
           </div>
         ) : (
-          orders.map((order: Order) => (
+          orders?.map((order: Order) => (
             <OrderCard key={order.id} order={order} />
           ))
         )}

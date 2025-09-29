@@ -58,6 +58,7 @@ export const TOAST_TITLES = {
   REMOVED_FROM_WISHLIST: 'Removed from wishlist',
   NOTE_SAVED: 'Note saved',
   PROCEEDING_TO_CHECKOUT: 'Proceeding to checkout',
+  ORDER_PLACED: 'Order placed successfully',
 
   // Error Titles
   LOGIN_FAILED: 'Login failed',
@@ -69,6 +70,7 @@ export const TOAST_TITLES = {
   CART_EMPTY: 'Cart is empty',
   INSUFFICIENT_STOCK: 'Insufficient stock',
   ALREADY_IN_WISHLIST: 'Already in wishlist',
+  ORDER_FAILED: 'Order failed',
 };
 
 // Toast Descriptions
@@ -82,6 +84,8 @@ export const TOAST_DESCRIPTIONS = {
   NOTE_SAVED: 'Your note has been saved successfully.',
   CHECKOUT_REDIRECT: 'Redirecting to checkout page...',
   CHECKOUT_PROCEEDING: 'Proceeding to checkout...',
+  ORDER_PLACED:
+    'Thank you for your purchase! You will receive a confirmation email shortly.',
 
   // Product Actions
   PRODUCT_ADDED_TO_CART: (productName: string) =>
@@ -113,6 +117,7 @@ export const TOAST_DESCRIPTIONS = {
   INSUFFICIENT_STOCK_GENERIC: (available: number) =>
     `Only ${available} items available in stock.`,
   GENERIC_TRY_AGAIN: 'Please try again.',
+  ORDER_FAILED: 'There was an error processing your order. Please try again.',
 };
 
 // Toast Variants
@@ -212,6 +217,18 @@ export const TOAST_MESSAGES = {
       ' ' +
       TOAST_DESCRIPTIONS.GENERIC_TRY_AGAIN,
     variant: TOAST_VARIANTS.ERROR,
+  },
+
+  ORDER_FAILED: {
+    title: TOAST_TITLES.ORDER_FAILED,
+    description: TOAST_DESCRIPTIONS.ORDER_FAILED,
+    variant: TOAST_VARIANTS.ERROR,
+  },
+
+  ORDER_PLACED: {
+    title: TOAST_TITLES.ORDER_PLACED,
+    description: TOAST_DESCRIPTIONS.ORDER_PLACED,
+    variant: TOAST_VARIANTS.SUCCESS,
   },
 };
 

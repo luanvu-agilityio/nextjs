@@ -24,6 +24,7 @@ import { useCreateOrder } from '@/hooks';
 
 // Types
 import { CheckoutFormData } from '@/types/order';
+import { TOAST_MESSAGES } from '@/constants';
 
 function CheckoutPage() {
   const router = useRouter();
@@ -72,19 +73,9 @@ function CheckoutPage() {
       // Clear cart after successful order
       clearCart();
 
-      showToast({
-        title: 'Order Placed Successfully!',
-        description:
-          'Thank you for your purchase. You will receive a confirmation email shortly.',
-        variant: 'success',
-      });
+      showToast(TOAST_MESSAGES.ORDER_PLACED);
     } catch {
-      showToast({
-        title: 'Order Failed',
-        description:
-          'There was an error processing your order. Please try again.',
-        variant: 'error',
-      });
+      showToast(TOAST_MESSAGES.ORDER_FAILED);
     } finally {
       setIsSubmitting(false);
     }

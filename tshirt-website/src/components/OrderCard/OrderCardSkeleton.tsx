@@ -1,5 +1,5 @@
 const OrderCardSkeleton = () => (
-  <div className='border rounded-lg p-4 bg-white shadow-sm animate-pulse'>
+  <div className='border rounded-lg p-4 bg-white shadow-sm animate-pulse mb-4'>
     <div className='flex justify-between items-start mb-2'>
       <div>
         <div className='h-5 bg-gray-200 rounded w-24 mb-2'></div>
