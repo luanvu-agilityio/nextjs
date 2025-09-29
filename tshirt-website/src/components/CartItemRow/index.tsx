@@ -32,14 +32,16 @@ function CartItemRow({
   className,
   onSaveNote,
 }: Readonly<CartItemRowProps>) {
+  const { id, name, image, price, stock, colors } = product;
+
   const [qty, setQty] = useState(initialQuantity);
   const [note, setNote] = useState(initialNote);
   const [notesOpen, setNotesOpen] = useState(false);
 
   const inc = () => setQty(q => q + 1);
   const dec = () => setQty(q => Math.max(1, q - 1));
-  const handleRemove = () => onRemove?.(product.id);
-  const handleSaveNote = () => onSaveNote?.(product.id, note);
+  const handleRemove = () => onRemove?.(id);
+  const handleSaveNote = () => onSaveNote?.(id, note);
   return (
     <div
       className={cn(
@@ -51,28 +53,28 @@ function CartItemRow({
         <div className='flex items-center justify-between gap-10'>
           <div className='w-20 h-20 flex-shrink-0  overflow-hidden bg-gray-50'>
             <Image
-              src={product.image}
-              alt={product.name}
+              src={image}
+              alt={name}
               width={80}
               height={80}
               className='object-cover'
             />
           </div>
           <div>
-            <Typography className='font-bold'>{product.name}</Typography>
+            <Typography className='font-bold'>{name}</Typography>
             <Typography className='text-sm text-gray-500'>
-              Color : {product.colors?.[0] ?? '—'}
+              Color : {colors?.[0] ?? '—'}
             </Typography>
           </div>
         </div>
 
         <div className='text-right'>
-          <Typography className='font-bold'>{product.price}$ USD</Typography>
+          <Typography className='font-bold'>{price}$ USD</Typography>
           <Typography className='text-sm text-gray-500'>Price</Typography>
         </div>
 
         <div className='text-center'>
-          <Typography className='font-bold'>{product.stock ?? '—'}</Typography>
+          <Typography className='font-bold'>{stock ?? '—'}</Typography>
           <Typography className='text-sm text-gray-500'>In Stock</Typography>
         </div>
         <IconButton
