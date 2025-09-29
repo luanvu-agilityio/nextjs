@@ -2,17 +2,6 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ProductCard } from './index';
 import ProductCardSkeleton from './ProductCardSkeleton';
 
-import { useRouter } from '__mocks__/next/navigation';
-
-useRouter = () => ({
-  push: () => {},
-  replace: () => {},
-  prefetch: () => {},
-  back: () => {},
-  forward: () => {},
-  refresh: () => {},
-});
-
 const meta: Meta<typeof ProductCard> = {
   title: 'Product/ProductCard',
   component: ProductCard,
