@@ -93,8 +93,6 @@ function ShopPageContent() {
   const totalPages = productsResponse?.totalPages || 0;
   const hasMore = currentPage < totalPages;
 
-  const showInitialLoading =
-    currentPage === 1 && isLoading && loadedProducts.length === 0;
   const showLoadMoreLoading = currentPage > 1 && isLoading;
 
   return (
@@ -141,7 +139,7 @@ function ShopPageContent() {
         </div>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-          {showInitialLoading
+          {isLoading
             ? Array.from({ length: filters.limit || 8 }).map((_, i) => (
                 <ProductCardSkeleton key={i} />
               ))
